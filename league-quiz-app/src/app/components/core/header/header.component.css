@@ -1,0 +1,62 @@
+/* Custom League of Legends-inspired font */
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/assets/fonts/Cinzel-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-league {
+  font-family: 'Cinzel', serif;
+}
+
+/* Add a 3D perspective to the container */
+.logo-container {
+  perspective: 1000px; /* Perspective depth for 3D transformations */
+}
+
+/* Tilt animation for the logo */
+@keyframes left-right-tilt {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(-50deg);
+  }
+  50% {
+    transform: rotateY(0deg);
+  }
+  75% {
+    transform: rotateY(50deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.animate-tilt {
+  transform-style: preserve-3d; /* Ensures 3D transforms are applied */
+  animation: left-right-tilt 1.5s infinite ease-in-out;
+}
+
+/* Hover animation for links */
+a {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+  color: #facc15; /* League-inspired yellow color */
+  transform: scale(1.05);
+}
+
+/* Mobile menu transitions */
+.menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}

@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  cursor: url('/assets/pointer.cur') 16 16, auto !important;
+}
+
+
+body:active {
+  cursor: url('assets/pointer-click.cur') 16 16, auto !important;
+}
+
+
+  

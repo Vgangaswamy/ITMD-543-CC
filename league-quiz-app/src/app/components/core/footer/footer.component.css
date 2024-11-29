@@ -1,0 +1,50 @@
+/* Custom League of Legends-inspired font */
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/assets/fonts/Cinzel-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-league {
+  font-family: 'Cinzel', serif;
+}
+
+/* Hover effects for icons */
+a {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+  color: #facc15; /* League-inspired yellow color */
+  transform: scale(1.1);
+}
+
+/* Social Media Icon Styling */
+footer i {
+  color: inherit;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer i:hover {
+  color: #facc15;
+  transform: scale(1.2); /* Slightly enlarges icon */
+}
+
+/* Tagline styling */
+footer p {
+  font-family: 'Cinzel', serif;
+}
+
+/* Divider customization */
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 1rem 0; /* Reduced spacing */
+}
+
+/* Copyright text */
+footer p.text-sm {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}

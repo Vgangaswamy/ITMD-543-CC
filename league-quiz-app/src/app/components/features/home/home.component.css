@@ -1,0 +1,42 @@
+/* Subtle pulse animation for the title */
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s infinite;
+}
+
+/* Black glow effect for title */
+.text-black-glow {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Hover black glow for buttons */
+.btn-hover-black-glow {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-hover-black-glow:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Subtle black glow */
+  transform: translateY(-3px); /* Slight lift */
+}
+
+/* Background vignette for immersive effect */
+.vignette {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none; /* Prevent interaction */
+}

@@ -1,0 +1,42 @@
+<div class="h-screen flex flex-col bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white relative">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="assets/images/league-bg.jpg"
+      alt="League Background"
+      class="w-full h-full object-cover opacity-40"
+    />
+  </div>
+
+  <!-- Background Vignette Effect -->
+  <div class="vignette"></div>
+
+  <!-- Main Content -->
+  <div class="flex-grow flex flex-col justify-center items-center text-center relative z-10">
+    <!-- Title -->
+    <h1 class="text-6xl font-bold text-yellow-400 tracking-wide text-black-glow animate-subtle-pulse">
+      Champion Compass
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-lg max-w-xl text-gray-300 mt-4">
+      Embark on an epic journey to discover your champion through an exciting and interactive quiz!
+    </p>
+
+    <!-- Buttons -->
+    <div class="mt-6 space-x-4">
+      <button
+        class="bg-blue-500 btn-hover-black-glow text-white font-bold py-3 px-6 rounded-lg shadow-md transform"
+        routerLink="/quiz"
+      >
+        Start Quiz
+      </button>
+      <button
+        class="bg-gray-700 btn-hover-black-glow text-white font-bold py-3 px-6 rounded-lg shadow-md transform"
+        routerLink="/champions"
+      >
+        Browse Champions
+      </button>
+    </div>
+  </div>
+</div>

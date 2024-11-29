@@ -1,0 +1,65 @@
+<header class="bg-gradient-to-r from-gray-900 via-black to-gray-900 p-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo and Title -->
+    <div class="flex items-center space-x-4">
+      <!-- Logo container with perspective -->
+      <div class="logo-container">
+        <img
+          src="assets/logo.png"
+          alt="League of Legends Logo"
+          class="w-12 h-12 animate-tilt"
+        >
+      </div>
+      <h1 class="text-3xl font-bold text-yellow-400 font-league">Summoner's Choice</h1>
+    </div>
+
+    <!-- Navigation Links (Desktop) -->
+    <nav class="hidden md:flex space-x-6">
+      <a
+        routerLink="/"
+        class="text-white text-lg hover:text-yellow-400 transition duration-300 ease-in-out"
+      >
+        Home
+      </a>
+      <a
+        routerLink="/quiz"
+        class="text-white text-lg hover:text-yellow-400 transition duration-300 ease-in-out"
+      >
+        Quiz
+      </a>
+      <a
+        routerLink="/champions"
+        class="text-white text-lg hover:text-yellow-400 transition duration-300 ease-in-out"
+      >
+        Champions
+      </a>
+      <a
+        routerLink="/results"
+        class="text-white text-lg hover:text-yellow-400 transition duration-300 ease-in-out"
+      >
+        Results
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="md:hidden text-white text-2xl focus:outline-none"
+      (click)="toggleMenu()"
+      aria-label="Toggle navigation menu"
+    >
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div
+    *ngIf="menuOpen"
+    class="bg-gray-800 text-white space-y-4 text-center py-4 md:hidden transition-opacity duration-300 ease-in-out"
+    [ngClass]="{ 'menu-enter-active': menuOpen }"
+  >
+    <a routerLink="/" class="block hover:text-yellow-400">Home</a>
+    <a routerLink="/quiz" class="block hover:text-yellow-400">Quiz</a>
+    <a routerLink="/champions" class="block hover:text-yellow-400">Champions</a>
+    <a routerLink="/results" class="block hover:text-yellow-400">Results</a>
+  </div>
+</header>

@@ -14,32 +14,27 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js
+    # Step 2: Set up Node.js with the correct version
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '18.19'
 
-    # Step 3: Navigate to the Angular app directory
-    - name: Change directory to league-quiz-app
-      working-directory: league-quiz-app
-      run: pwd
-
-    # Step 4: Install Angular CLI globally
+    # Step 3: Install Angular CLI globally
     - name: Install Angular CLI
       run: npm install -g @angular/cli
 
-    # Step 5: Install project dependencies
+    # Step 4: Install project dependencies
     - name: Install dependencies
       working-directory: league-quiz-app
       run: npm install
 
-    # Step 6: Build the Angular app
+    # Step 5: Build the Angular app
     - name: Build the Angular app
       working-directory: league-quiz-app
       run: npm run build
 
-    # Step 7: Deploy to Netlify
+    # Step 6: Deploy to Netlify
     - name: Deploy to Netlify
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

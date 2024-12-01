@@ -24,19 +24,23 @@ jobs:
     - name: Install Angular CLI
       run: npm install -g @angular/cli
 
-    # Step 4: Install project dependencies
+    # Step 4: Install Netlify CLI globally
+    - name: Install Netlify CLI
+      run: npm install -g netlify-cli
+
+    # Step 5: Install project dependencies
     - name: Install dependencies
       working-directory: league-quiz-app
       run: npm install
 
-    # Step 5: Build the Angular app
+    # Step 6: Build the Angular app
     - name: Build the Angular app
       working-directory: league-quiz-app
       run: npm run build
 
-    # Step 6: Deploy to Netlify
+    # Step 7: Deploy to Netlify
     - name: Deploy to Netlify
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: npx netlify deploy --prod --dir league-quiz-app/dist/league-quiz-app
+      run: netlify deploy --prod --dir league-quiz-app/dist/league-quiz-app

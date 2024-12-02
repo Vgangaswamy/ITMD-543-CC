@@ -18,7 +18,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.19'
+        node-version: '18.19' # Use an LTS version of Node.js
 
     # Step 3: Install Angular CLI globally
     - name: Install Angular CLI
@@ -33,14 +33,14 @@ jobs:
       working-directory: league-quiz-app
       run: npm install
 
-    # Step 6: Build the Angular app
+    # Step 6: Build the Angular app with production configuration
     - name: Build the Angular app
       working-directory: league-quiz-app
-      run: npm run build
+      run: ng build --configuration=production
 
     # Step 7: Deploy to Netlify
     - name: Deploy to Netlify
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: netlify deploy --prod --dir league-quiz-app/dist/league-quiz-app
+      run: netlify deploy --prod --dir dist/league-quiz-app

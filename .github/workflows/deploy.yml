@@ -3,7 +3,7 @@ name: Deploy Angular with Tailwind CSS to Netlify
 on:
   push:
     branches:
-      - main # Adjust if your default branch is different
+      - main # Update this if your default branch is different
 
 jobs:
   build-and-deploy:
@@ -13,21 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Debug repository files
+        run: ls -R
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Ensure this matches your project's Node.js version
+          node-version: 18 # Update based on your Node.js version
 
       - name: Install dependencies
         run: npm install
 
       - name: Build Angular application
         run: npm run build
+        working-directory: ./league-quiz-app # Specify the Angular project folder
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0.0
         with:
-          publish-dir: dist/league-quiz-app # Replace with your actual build output directory
+          publish-dir: ./league-quiz-app/dist/league-quiz-app # Adjust path for the build output
           production-deploy: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

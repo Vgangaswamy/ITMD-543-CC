@@ -1,42 +1,37 @@
-name: Deploy to Netlify
+name: Deploy Angular with Tailwind CSS to Netlify
 
 on:
   push:
     branches:
-      - main
+      - main # Change to your default branch if different
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out the code
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.19'
+        node-version: 18 # Adjust to your project's Node.js version
 
-    # Step 3: Install Angular CLI globally
-    - name: Install Angular CLI
-      run: npm install -g @angular/cli
-
-    # Step 4: Install project dependencies
     - name: Install dependencies
-      working-directory: league-quiz-app
       run: npm install
 
-    # Step 5: Build the Angular app
-    - name: Build the Angular app
-      working-directory: league-quiz-app
-      run: ng build --configuration=production
+    - name: Build Angular application
+      run: npm run build
 
-    # Step 6: Deploy to Netlify
+    - name: Process Tailwind CSS
+      run: npx tailwindcss -i ./src/styles.css -o ./dist/league-quiz-app/styles.css --minify
+
     - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2.0.1
+      with:
+        publish-dir: dist/league-quiz-app # Replace with your Angular project’s dist folder name
+        production-deploy: true
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: netlify deploy --prod --dir=league-quiz-app/dist/league-quiz-app

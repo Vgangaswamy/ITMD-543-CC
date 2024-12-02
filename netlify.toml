@@ -1,5 +1,5 @@
 [build]
-  publish = "league-quiz-app/dist/league-quiz-app"
+  publish = "league-quiz-app/dist/league-quiz-app/browser"
   command = "npm run build --prefix league-quiz-app"
 
 [[redirects]]

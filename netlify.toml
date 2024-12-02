@@ -1,0 +1,8 @@
+[build]
+  publish = "league-quiz-app/dist/league-quiz-app"
+  command = "npm run build --prefix league-quiz-app"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

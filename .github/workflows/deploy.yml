@@ -3,35 +3,32 @@ name: Deploy Angular with Tailwind CSS to Netlify
 on:
   push:
     branches:
-      - main # Change to your default branch if different
+      - main # Adjust if your default branch is different
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18 # Adjust to your project's Node.js version
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Ensure this matches your project's Node.js version
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build Angular application
-      run: npm run build
+      - name: Build Angular application
+        run: npm run build
 
-    - name: Process Tailwind CSS
-      run: npx tailwindcss -i ./src/styles.css -o ./dist/league-quiz-app/styles.css --minify
-
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v2.0.1
-      with:
-        publish-dir: dist/league-quiz-app # Replace with your Angular project’s dist folder name
-        production-deploy: true
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0.0
+        with:
+          publish-dir: dist/league-quiz-app # Replace with your actual build output directory
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

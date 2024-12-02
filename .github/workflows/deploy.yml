@@ -18,7 +18,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.19' # Use the correct Node.js version
+        node-version: '18.19'
 
     # Step 3: Install Angular CLI globally
     - name: Install Angular CLI
@@ -39,4 +39,4 @@ jobs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: netlify deploy --prod --dir=dist/league-quiz-app/browser
+      run: netlify deploy --prod --dir=league-quiz-app/dist/league-quiz-app

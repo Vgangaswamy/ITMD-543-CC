@@ -1,0 +1,105 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+.h-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #1f2937, #111827);
+  padding: 1rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.search-input,
+.type-filter,
+.difficulty-filter {
+  max-width: 200px;
+  padding: 0.5rem;
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.search-input {
+  width: 300px;
+}
+
+.heroes-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding: 1rem;
+  background-color: #111827;
+  border-radius: 0.5rem;
+}
+
+.hero-card {
+  position: relative;
+  background-color: #2d3748;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.hero-card h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #f6e05e;
+}
+
+.hero-card h4 {
+  font-size: 1rem;
+  font-style: italic;
+  color: #a0aec0;
+}
+
+.hero-card p {
+  font-size: 0.875rem;
+  color: #cbd5e0;
+}
+
+/* Stats Overlay */
+.stats-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
+  color: #fff;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hero-card:hover .stats-overlay {
+  opacity: 1;
+}

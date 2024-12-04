@@ -1,1 +1,71 @@
-<p>quiz works!</p>
+<div class="h-screen flex flex-col bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white relative">
+  <div class="absolute inset-0">
+    <img
+      src="assets/images/league-bg.jpg"
+      alt="League Background"
+      class="w-full h-full object-cover opacity-40"
+    />
+  </div>
+
+  <div class="flex-grow flex flex-col justify-center items-center text-center relative z-10 p-6">
+    <div *ngIf="loading" class="loading text-center">
+      <h2 class="text-2xl font-bold text-yellow-400 animate-pulse">Loading...</h2>
+    </div>
+
+    <div *ngIf="error" class="error text-center text-red-400">
+      <h2 class="text-xl font-semibold">Error</h2>
+      <p>{{ error }}</p>
+    </div>
+
+    <div
+      *ngIf="!quizComplete && !loading && !error && currentQuestionIndex < questions.length"
+      class="quiz-card bg-gray-800 p-8 rounded-lg shadow-lg max-w-2xl w-full"
+    >
+      <h2 class="text-4xl font-bold text-yellow-400 mb-6">
+        Question {{ currentQuestionIndex + 1 }}
+      </h2>
+      <p class="text-xl text-gray-300 mb-8">{{ questions[currentQuestionIndex]?.content }}</p>
+
+      <div class="options grid grid-cols-1 md:grid-cols-2 gap-8">
+        <button
+          *ngFor="let option of questions[currentQuestionIndex]?.options"
+          class="option-btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg shadow-md transition-transform transform hover:scale-105"
+          (click)="submitAnswer(option)"
+        >
+          {{ option }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="quizComplete" class="results-card bg-gray-800 p-10 rounded-lg shadow-lg max-w-6xl w-full">
+      <h2 class="text-4xl font-bold text-yellow-400 mb-6">Recommended Champions</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div
+          *ngFor="let rec of recommendations"
+          class="champion-card bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative"
+        >
+          <div class="relative">
+            <img [src]="rec.image" alt="{{ rec.name }}" class="w-full h-40 rounded-lg object-cover mb-4" />
+            <div class="absolute top-2 right-2 bg-black bg-opacity-60 px-2 py-1 rounded text-yellow-400 text-sm font-semibold">
+              <span *ngFor="let star of getStars(rec.difficulty)">⭐</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-yellow-400">{{ rec.name }}</h3>
+          <h4 class="text-md italic text-gray-400 mb-2">{{ rec.title }}</h4>
+          <p class="text-sm text-gray-300">{{ rec.lore }}</p>
+
+          <!-- Hover Stats -->
+        <div class="stats-overlay absolute inset-0 bg-black bg-opacity-90 text-white p-6 flex flex-col justify-center items-center rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300">
+          <h4 class="text-lg font-bold mb-4">{{ rec.name }} Stats</h4>
+          <ul class="text-sm space-y-2">
+            <li><strong>Attack:</strong> {{ rec.stats.attack }}</li>
+            <li><strong>Defense:</strong> {{ rec.stats.defense }}</li>
+            <li><strong>Magic:</strong> {{ rec.stats.magic }}</li>
+            <li><strong>Difficulty:</strong> {{ rec.difficulty }}</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

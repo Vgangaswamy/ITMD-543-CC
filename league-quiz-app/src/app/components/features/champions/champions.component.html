@@ -1,1 +1,146 @@
-<p>champions works!</p>
+<div
+  class="h-screen flex flex-col bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white p-6"
+>
+  <h1 class="text-4xl font-bold text-center text-yellow-400 mb-8">
+    Browse Champions
+  </h1>
+
+  <!-- Hero of the Day -->
+  <div
+    class="hero-day bg-gray-800 text-white rounded-lg shadow-lg p-6 mb-6 flex flex-col md:flex-row items-center gap-6"
+  >
+    <img
+      [src]="heroOfTheDay.image"
+      alt="{{ heroOfTheDay.name }}"
+      class="w-40 h-40 rounded-lg object-cover shadow-md"
+    />
+    <div>
+      <h2 class="text-3xl font-bold text-yellow-400 mb-2">
+        Hero of the Day: {{ heroOfTheDay.name }}
+      </h2>
+      <h3 class="text-lg italic text-gray-400 mb-4">{{ heroOfTheDay.title }}</h3>
+      <p class="text-md text-gray-300 mb-4">
+        {{ heroOfTheDay.description }}
+      </p>
+      <p>
+        Type:
+        <span
+          *ngFor="let tag of heroOfTheDay.tags"
+          [ngStyle]="{ color: getRoleColor(tag) }"
+        >
+          {{ tag }}
+        </span>
+        | Difficulty: {{ heroOfTheDay.difficulty }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters flex flex-wrap justify-center items-center gap-4 mb-6">
+    <input
+      type="text"
+      class="search-input bg-gray-700 text-white p-2 rounded w-64"
+      placeholder="Search Hero..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange()"
+    />
+
+    <select
+      class="type-filter bg-gray-700 text-white p-2 rounded"
+      [(ngModel)]="selectedType"
+      (change)="onTypeChange()"
+    >
+      <option *ngFor="let type of heroTypes" [value]="type">{{ type }}</option>
+    </select>
+
+    <select
+      class="difficulty-filter bg-gray-700 text-white p-2 rounded"
+      [(ngModel)]="selectedDifficulty"
+      (change)="onDifficultyChange()"
+    >
+      <option *ngFor="let level of difficultyLevels" [value]="level">
+        {{ level }}
+      </option>
+    </select>
+
+    <select
+      class="sort-filter bg-gray-700 text-white p-2 rounded"
+      [(ngModel)]="sortOption"
+      (change)="onSortChange()"
+    >
+      <option *ngFor="let option of sortOptions" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+
+    <button
+      class="clear-btn bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded"
+      (click)="clearFilters()"
+    >
+      Clear All
+    </button>
+  </div>
+
+  <!-- Heroes Grid -->
+  <div
+    class="heroes-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <div
+      *ngFor="let hero of paginatedHeroes"
+      class="hero-card bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
+    >
+      <img
+        [src]="hero.image"
+        alt="{{ hero.name }}"
+        class="w-full h-40 rounded-lg object-cover mb-4"
+      />
+      <div
+        class="absolute top-2 right-2 bg-black bg-opacity-60 px-2 py-1 rounded text-yellow-400 text-sm font-semibold"
+      >
+        <span *ngFor="let star of getStars(hero.stats.difficulty)">⭐</span>
+      </div>
+      <h3 class="text-xl font-bold text-yellow-400">{{ hero.name }}</h3>
+      <h4 class="text-md italic text-gray-400 mb-2">{{ hero.title }}</h4>
+      <p class="text-sm text-gray-300 mb-4">
+        Type:
+        <span
+          *ngFor="let tag of hero.tags"
+          [ngStyle]="{ color: getRoleColor(tag) }"
+        >
+          {{ tag }}
+        </span>
+        | Difficulty: {{ hero.difficulty }}
+      </p>
+      <!-- Stats Overlay -->
+      <div
+        class="stats-overlay absolute inset-0 bg-black bg-opacity-80 text-white p-4 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center"
+      >
+        <h4 class="text-lg font-bold mb-2">Stats</h4>
+        <ul class="text-sm space-y-2 text-center">
+          <li><strong>Attack:</strong> {{ hero.stats.attack }}</li>
+          <li><strong>Defense:</strong> {{ hero.stats.defense }}</li>
+          <li><strong>Magic:</strong> {{ hero.stats.magic }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination flex justify-center items-center mt-6 gap-2">
+    <button
+      class="bg-gray-700 text-white py-1 px-3 rounded"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      Prev
+    </button>
+    <span class="text-yellow-400">{{ currentPage }} / {{ totalPages }}</span>
+    <button
+      class="bg-gray-700 text-white py-1 px-3 rounded"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
+</div>

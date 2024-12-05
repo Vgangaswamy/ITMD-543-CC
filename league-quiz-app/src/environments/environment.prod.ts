@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
-    openaiApiKey: process.env['OPENAI_API_KEY'] || '',
-  };
+  production: true,
+  OPENAI_API_KEY: 'REPLACE_WITH_API_KEY'  // Placeholder for API key
+};

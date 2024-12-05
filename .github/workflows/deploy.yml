@@ -3,7 +3,7 @@ name: Deploy Angular with Tailwind CSS to Netlify
 on:
   push:
     branches:
-      - main # Change this to your default branch if it's different
+      - main  # Change this to your default branch if it's different
 
 jobs:
   build-and-deploy:
@@ -18,29 +18,30 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Update if your project requires a different version
+          node-version: 18  # Update if your project requires a different version
 
-      # Step 3: Install dependencies and Node.js types
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           npm install
-          npm install --save-dev @types/node # Install Node.js types to resolve 'process' error
-        working-directory: ./league-quiz-app # Adjust path if needed
-
-      # Step 4: Build Angular application
-      - name: Build Angular application
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
-          npm run build --prod
         working-directory: ./league-quiz-app
 
-      # Step 5: Install Netlify CLI
+      # Step 4: Inject OpenAI API Key from GitHub Secrets into environment.prod.ts
+      - name: Replace OpenAI API Key in environment.prod.ts
+        run: |
+          sed -i "s|REPLACE_WITH_API_KEY|${{ secrets.OPENAI_API_KEY }}|g" ./league-quiz-app/src/environments/environment.prod.ts
+        working-directory: ./league-quiz-app
+
+      # Step 5: Build Angular application
+      - name: Build Angular application
+        run: npm run build --prod
+        working-directory: ./league-quiz-app
+
+      # Step 6: Install Netlify CLI
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      # Step 6: Deploy to Netlify
+      # Step 7: Deploy to Netlify
       - name: Deploy to Netlify
         run: netlify deploy --prod --site 36afb243-6112-4881-a95d-ea23943ae240 --dir=./league-quiz-app/dist/league-quiz-app
         env:

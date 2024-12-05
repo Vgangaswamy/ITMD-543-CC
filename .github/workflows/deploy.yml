@@ -10,29 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18 # Update if your project requires a different version
 
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install --save-dev @types/node # Install Node.js types to fix 'process' error
         working-directory: ./league-quiz-app # Change to the directory of your Angular app
 
+      # Step 4: Build Angular application
       - name: Build Angular application
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
-          npm run build
+          npm run build --prod
         working-directory: ./league-quiz-app
 
+      # Step 5: Install Netlify CLI
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
+      # Step 6: Deploy to Netlify
       - name: Deploy to Netlify
         run: netlify deploy --prod --site 36afb243-6112-4881-a95d-ea23943ae240 --dir=./league-quiz-app/dist/league-quiz-app
         env:

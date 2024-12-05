@@ -20,25 +20,32 @@ jobs:
         with:
           node-version: 18 # Update if your project requires a different version
 
-      # Step 3: Clear npm cache (optional but recommended for ERESOLVE issues)
+      # Step 3: Remove node_modules and package-lock.json
+      - name: Clean dependencies
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+        working-directory: ./league-quiz-app
+
+      # Step 4: Clear npm cache
       - name: Clear npm cache
         run: npm cache clean --force
 
-      # Step 4: Install dependencies with --legacy-peer-deps
+      # Step 5: Install dependencies with --legacy-peer-deps
       - name: Install dependencies
-        run: npm install --force
-        working-directory: ./league-quiz-app # Change to the directory of your Angular app
+        run: npm install --legacy-peer-deps
+        working-directory: ./league-quiz-app
 
-      # Step 5: Build Angular application
+      # Step 6: Build Angular application
       - name: Build Angular application
         run: npm run build
         working-directory: ./league-quiz-app
 
-      # Step 6: Install Netlify CLI globally
+      # Step 7: Install Netlify CLI globally
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      # Step 7: Deploy to Netlify
+      # Step 8: Deploy to Netlify
       - name: Deploy to Netlify
         run: netlify deploy --prod --site 36afb243-6112-4881-a95d-ea23943ae240 --dir=./league-quiz-app/dist/league-quiz-app
         env:

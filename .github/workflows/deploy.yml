@@ -3,7 +3,7 @@ name: Deploy Angular with Tailwind CSS to Netlify
 on:
   push:
     branches:
-      - main # Change this to your default branch if it's different
+      - main
 
 jobs:
   build-and-deploy:
@@ -18,35 +18,30 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Update if your project requires a different version
+          node-version: 18
 
-      # Step 3: Remove node_modules and package-lock.json
+      # Step 3: Clean dependencies
       - name: Clean dependencies
         run: |
-          rm -rf node_modules
-          rm -f package-lock.json
+          rm -rf node_modules package-lock.json
         working-directory: ./league-quiz-app
 
-      # Step 4: Clear npm cache
-      - name: Clear npm cache
-        run: npm cache clean --force
-
-      # Step 5: Install dependencies with --legacy-peer-deps
+      # Step 4: Install dependencies
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
         working-directory: ./league-quiz-app
 
-      # Step 6: Build Angular application
+      # Step 5: Build Angular application
       - name: Build Angular application
         run: npm run build
         working-directory: ./league-quiz-app
 
-      # Step 7: Install Netlify CLI globally
+      # Step 6: Install Netlify CLI
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      # Step 8: Deploy to Netlify
+      # Step 7: Deploy to Netlify
       - name: Deploy to Netlify
-        run: netlify deploy --prod --site 36afb243-6112-4881-a95d-ea23943ae240 --dir=./league-quiz-app/dist/league-quiz-app
+        run: netlify deploy --prod --site 36afb243-6112-4881-a95d-ea23943ae240 --dir=./league-quiz-app/dist/league-quiz-app/browser
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

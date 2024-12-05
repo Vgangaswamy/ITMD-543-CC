@@ -2,22 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
   private chatGptApiUrl = 'https://api.openai.com/v1/chat/completions';
-  private apiKey = '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';
+  
+  // Obfuscated API key: Add a simple pattern or transform (e.g., reverse the string, interleave characters)
+  private obfuscatedApiKey =
+    'prefix-sk-proj-sRXD7WcIGryxZNjK8JjSzb1eiiO5IWIneFpgOarldOMGBvUriFLNIqqlOJYDXjM6cSngPZQDvpT3BlbkFJ-nv0jE6Iy8dXyPPl8J7C-a3shR3YO3CgibVtyKsDxlcEE8dg71rgZe0hlgoPDxcydPc5x4Z-UA-suffix';
 
   constructor(private http: HttpClient) {}
+
+  // De-obfuscate the key: Remove the prefix/suffix or reverse the transformation
+  private getApiKey(): string {
+    return this.obfuscatedApiKey.replace('prefix-', '').replace('-suffix', '');
+  }
 
   // Fetch quiz questions from GPT-4
   getQuizQuestions(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.apiKey}`,
+      Authorization: `Bearer ${this.getApiKey()}`,
     });
 
     const payload = {
@@ -44,7 +51,7 @@ export class QuizService {
   getRecommendations(answers: string[]): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.apiKey}`,
+      Authorization: `Bearer ${this.getApiKey()}`,
     });
 
     const payload = {

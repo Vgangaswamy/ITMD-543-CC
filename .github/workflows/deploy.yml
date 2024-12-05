@@ -19,7 +19,7 @@ jobs:
           node-version: 18 # Update if your project requires a different version
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps # Add --legacy-peer-deps to resolve dependency conflicts
         working-directory: ./league-quiz-app # Change to the directory of your Angular app
 
       - name: Build Angular application

@@ -20,12 +20,12 @@ jobs:
         with:
           node-version: 18 # Update if your project requires a different version
 
-      # Step 3: Install dependencies
+      # Step 3: Install dependencies and Node.js types
       - name: Install dependencies
         run: |
           npm install
-          npm install --save-dev @types/node # Install Node.js types to fix 'process' error
-        working-directory: ./league-quiz-app # Change to the directory of your Angular app
+          npm install --save-dev @types/node # Install Node.js types to resolve 'process' error
+        working-directory: ./league-quiz-app # Adjust path if needed
 
       # Step 4: Build Angular application
       - name: Build Angular application

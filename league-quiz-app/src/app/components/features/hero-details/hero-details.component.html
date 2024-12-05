@@ -1,0 +1,125 @@
+<div
+  class="hero-details h-screen flex flex-col items-center bg-gray-900 text-white relative overflow-hidden"
+>
+  <!-- Animated Background -->
+  <div
+    class="absolute inset-0 bg-cover bg-center opacity-20 blur-xl animate-pulse"
+    [style.backgroundImage]="'url(' + hero?.image + ')'"
+  ></div>
+
+  <!-- Back Button -->
+  <button
+    class="back-button absolute top-4 left-4 bg-yellow-400 text-black px-4 py-2 rounded-lg shadow-md hover:bg-yellow-500 z-20"
+    (click)="goBack()"
+  >
+    ← Back
+  </button>
+
+  <!-- Hero Banner -->
+  <div
+    class="hero-banner w-full h-96 bg-cover bg-center rounded-lg shadow-lg flex flex-col justify-center items-center text-center relative z-10"
+    [style.backgroundImage]="'url(' + hero?.image + ')'"
+  >
+    <div class="bg-gray-900 bg-opacity-70 p-4 rounded-lg">
+      <h1 class="text-5xl font-extrabold text-yellow-400">
+        {{ hero?.name }}
+      </h1>
+      <h2 class="text-xl italic text-gray-400">{{ hero?.title }}</h2>
+      <blockquote class="mt-4 text-gray-300 italic">
+        "{{ currentQuote }}"
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Hero Details -->
+  <div
+    class="details bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-5xl mt-8 z-10"
+  >
+    <!-- Lore Section -->
+    <h3 class="text-3xl font-bold text-yellow-400 mb-4">Lore</h3>
+    <p class="text-gray-300 text-lg mb-6">{{ hero?.lore }}</p>
+
+    <!-- Role Tags -->
+    <div class="tags mb-6">
+      <h3 class="text-2xl font-bold text-yellow-400 mb-2">Roles</h3>
+      <div class="flex gap-2">
+        <span
+          *ngFor="let tag of hero?.tags"
+          [ngClass]="getTagClass(tag)"
+          class="tag px-4 py-2 rounded-full text-sm font-bold cursor-pointer"
+          [title]="getRoleDescription(tag)"
+        >
+          {{ tag }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Hero Insights -->
+    <div class="insights mb-6">
+      <h3 class="text-2xl font-bold text-yellow-400 mb-2">Hero Insights</h3>
+      <ul class="list-disc list-inside text-gray-300 text-lg">
+        <li>Region of Origin: {{ hero?.region || 'Unknown' }}</li>
+        <li>Popularity: {{ hero?.popularity || 'Moderate' }}</li>
+        <li>Win Rate: {{ hero?.winRate || 'Balanced' }}</li>
+      </ul>
+    </div>
+
+    <!-- Hero Strengths -->
+    <div class="strengths mb-6">
+      <h3 class="text-2xl font-bold text-yellow-400 mb-2">Hero Strengths</h3>
+      <ul class="list-disc list-inside text-gray-300 text-lg">
+        <li *ngFor="let strength of heroStrengths">
+          {{ strength }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Abilities Section -->
+    <h3 class="text-3xl font-bold text-yellow-400 mb-4">Abilities</h3>
+    <div class="abilities flex overflow-x-auto gap-4 pb-4">
+      <div
+        class="ability bg-gray-700 rounded-lg shadow-lg overflow-hidden flex-shrink-0 w-72 p-4 hover:scale-105 transition-transform relative"
+        *ngIf="hero?.passive"
+        [title]="'Passive Ability: ' + hero.passive.description"
+      >
+        <img
+          [src]="'https://ddragon.leagueoflegends.com/cdn/13.20.1/img/passive/' + hero.passive.image.full"
+          alt="{{ hero.passive.name }}"
+          class="w-16 h-16 mb-4"
+        />
+        <h4 class="text-lg font-bold text-yellow-400">
+          Passive: {{ hero.passive.name }}
+        </h4>
+      </div>
+
+      <div
+        class="ability bg-gray-700 rounded-lg shadow-lg overflow-hidden flex-shrink-0 w-72 p-4 hover:scale-105 transition-transform relative"
+        *ngFor="let ability of hero?.abilities"
+        [title]="ability.description"
+      >
+        <img
+          [src]="'https://ddragon.leagueoflegends.com/cdn/13.20.1/img/spell/' + ability.image.full"
+          alt="{{ ability.name }}"
+          class="w-16 h-16 mb-4"
+        />
+        <h4 class="text-lg font-bold text-yellow-400">
+          {{ ability.name }}
+        </h4>
+      </div>
+    </div>
+
+    <!-- Skins Carousel -->
+    <h3 class="text-3xl font-bold text-yellow-400 my-6">Skins</h3>
+    <div class="skins flex gap-4 overflow-x-auto">
+      <div
+        class="skin bg-gray-700 rounded-lg shadow-lg overflow-hidden flex-shrink-0 w-60"
+        *ngFor="let skin of hero?.skins"
+      >
+        <img [src]="skin.image" alt="{{ skin.name }}" class="w-full h-48" />
+        <h4 class="text-center text-lg text-yellow-400 p-2">
+          {{ skin.name }}
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>

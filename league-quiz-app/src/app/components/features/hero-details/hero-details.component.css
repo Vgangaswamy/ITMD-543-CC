@@ -1,0 +1,56 @@
+.hero-details {
+  overflow-y: auto;
+}
+
+.hero-banner {
+  background-size: cover;
+  background-position: center;
+}
+
+.details {
+  max-height: calc(100vh - 24rem);
+  overflow-y: auto;
+}
+
+.tag {
+  transition: transform 0.2s ease-in-out;
+}
+
+.tag:hover {
+  transform: scale(1.1);
+}
+
+.stat .comparison-bar div {
+  transition: width 0.4s ease-in-out;
+}
+
+.abilities img,
+.skins img {
+  transition: transform 0.2s ease-in-out;
+}
+
+.abilities img:hover,
+.skins img:hover {
+  transform: scale(1.1);
+}
+
+.back-button {
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #ffc107;
+}
+
+.animate-pulse {
+  animation: pulse 6s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-champions',
   standalone: true,
-   imports: [CommonModule, FormsModule],
+   imports: [CommonModule, FormsModule, RouterModule,],
   templateUrl: './champions.component.html',
   styleUrls: ['./champions.component.css'],
 })
@@ -31,6 +32,13 @@ export class ChampionsComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   totalPages: number = 0;
+
+  constructor(private router: Router) {}
+
+  navigateToHero(heroId: string): void {
+    console.log('Navigating to hero:', heroId); // For debugging
+    this.router.navigate(['/champion', heroId]);
+  }
 
   ngOnInit() {
     this.loadHeroes();

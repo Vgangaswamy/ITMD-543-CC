@@ -85,10 +85,11 @@
   <div
     class="heroes-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
   >
-    <div
-      *ngFor="let hero of paginatedHeroes"
-      class="hero-card bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
-    >
+        <div
+        *ngFor="let hero of paginatedHeroes"
+        class="hero-card bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
+        (click)="navigateToHero(hero.id)"
+      >
       <img
         [src]="hero.image"
         alt="{{ hero.name }}"

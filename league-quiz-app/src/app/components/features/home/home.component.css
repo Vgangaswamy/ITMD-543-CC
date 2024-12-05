@@ -14,22 +14,81 @@
   animation: subtle-pulse 3s infinite;
 }
 
-/* Black glow effect for title */
-.text-black-glow {
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+/* Narrator Image Animation */
+.animate-character {
+  width: 500px; /* Larger size */
+  height: auto;
+  margin-top: 40px; /* Adjusted positioning */
+  animation: fadeInUp 1.5s ease-out;
 }
 
-/* Hover black glow for buttons */
-.btn-hover-black-glow {
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+/* Title Animation */
+.animate-title {
+  animation: fadeIn 1.5s ease-out;
 }
 
-.btn-hover-black-glow:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Subtle black glow */
-  transform: translateY(-3px); /* Slight lift */
+/* Text Animation */
+.animate-text {
+  animation: fadeIn 2s ease-out;
 }
 
-/* Background vignette for immersive effect */
+/* Journey Button Animation */
+.animate-journey-button {
+  animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.9);
+    transform: scale(1.05);
+  }
+}
+
+/* Fade-in Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade-in Up Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Blinking Cursor */
+.blinking-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: #fff;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Vignette Effect */
 .vignette {
   background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
   position: absolute;
@@ -38,5 +97,6 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  pointer-events: none; /* Prevent interaction */
+  pointer-events: none;
 }
+

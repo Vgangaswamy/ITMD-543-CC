@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 import { CommonModule } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -18,7 +19,13 @@ export class QuizComponent implements OnInit {
   error: string | null = null;
   quizComplete: boolean = false;
 
-  constructor(private quizService: QuizService) {}
+  constructor(private quizService: QuizService, private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.resetQuiz();
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadQuestions();
@@ -77,7 +84,7 @@ export class QuizComponent implements OnInit {
           const enrichedRecommendations = await Promise.all(
             this.recommendations.map(async (rec: any) => {
               const details = await this.quizService.getChampionDetails(
-                rec.name.replace(/\s+/g, '')
+                rec.name.replace(/[^a-zA-Z0-9]/g, '') // Removes spaces and special characters
               );
               const shortLore = details.lore.split('. ')[0] + '.';
 
@@ -133,6 +140,23 @@ export class QuizComponent implements OnInit {
       return [];
     }
   }
+
+  resetQuiz(): void {
+    // Reset quiz logic here
+    this.questions = [];
+    this.answers = [];
+    this.recommendations = [];
+    this.currentQuestionIndex = 0;
+    this.loading = false;
+    this.error = null;
+    this.quizComplete = false;
+    this.loadQuestions();
+  }
+
+  restartQuiz(): void {
+      this.router.navigate(['/quiz']);
+  }
+  
 
   getConfidencePercentage(): number {
     return Math.round(((this.currentQuestionIndex + 1) / this.questions.length) * 100);

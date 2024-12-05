@@ -72,7 +72,7 @@ In addition to the quiz, the app provides educational content, including explana
 
 ---
 
-## **Future Scope (Updated)**
+## **Future Scope**
 
 **Personalized Profile and Dashboard**:
    - With user authentication, the next step could be to build a **personalized user profile** or dashboard. This would display saved quiz results, champion recommendations, progress, and stats tailored to the individual player.

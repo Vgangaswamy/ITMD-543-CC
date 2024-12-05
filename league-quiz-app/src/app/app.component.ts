@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/core/header/header.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterModule, 
     HeaderComponent,

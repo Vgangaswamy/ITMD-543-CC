@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment.prod';
 })
 export class QuizService {
   private chatGptApiUrl = 'https://api.openai.com/v1/chat/completions';
-  private apiKey = environment.openaiApiKey;
+  private apiKey = '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';
 
   constructor(private http: HttpClient) {}
 

@@ -23,7 +23,11 @@ jobs:
         working-directory: ./league-quiz-app # Change to the directory of your Angular app
 
       - name: Build Angular application
-        run: npm run build
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
+          npm run build
         working-directory: ./league-quiz-app
 
       - name: Install Netlify CLI

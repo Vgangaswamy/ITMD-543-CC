@@ -33,13 +33,37 @@
       >
         Champions
       </a>
-      <a
+      <!-- <a
         routerLink="/results"
         class="text-white text-lg hover:text-yellow-400 transition duration-300 ease-in-out"
       >
         Results
-      </a>
+      </a> -->
     </nav>
+
+    <!-- Login/Logout Buttons -->
+    <div class="flex items-center space-x-4">
+      <ng-container *ngIf="user; else loggedOut">
+        <div class="flex items-center space-x-2">
+          <img [src]="user.photoURL" alt="User Avatar" class="w-8 h-8 rounded-full" />
+          <span class="text-white text-sm">{{ user.displayName }}</span>
+        </div>
+        <button
+          class="text-yellow-400 hover:text-white transition duration-300 text-lg"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </ng-container>
+      <ng-template #loggedOut>
+        <button
+          class="text-yellow-400 hover:text-white transition duration-300 text-lg"
+          (click)="login()"
+        >
+          Login
+        </button>
+      </ng-template>
+    </div>
 
     <!-- Mobile Menu Button -->
     <button
@@ -60,6 +84,6 @@
     <a routerLink="/" class="block hover:text-yellow-400">Home</a>
     <a routerLink="/quiz" class="block hover:text-yellow-400">Quiz</a>
     <a routerLink="/champions" class="block hover:text-yellow-400">Champions</a>
-    <a routerLink="/results" class="block hover:text-yellow-400">Results</a>
+    <!-- <a routerLink="/results" class="block hover:text-yellow-400">Results</a> -->
   </div>
 </header>

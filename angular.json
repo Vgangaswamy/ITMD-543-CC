@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/league-quiz-app/browser",
+            "outputPath": "dist/league-quiz-app",
             "baseHref": "/",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -100,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": "096fac9e-01e6-44a8-bc06-fcb84c5f5089"
+    "analytics": "a7fce219-5d29-4195-bb70-4a7e17e42301"
   }
 }

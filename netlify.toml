@@ -1,6 +1,6 @@
 [build]
   publish = "league-quiz-app/dist/league-quiz-app/browser"
-  command = "npm run build --prefix league-quiz-app"
+  command = "npm install --legacy-peer-deps --prefix league-quiz-app && npm run build --prefix league-quiz-app"
 
 [[redirects]]
   from = "/*"

@@ -88,11 +88,23 @@ In addition to the quiz, the app provides educational content, including explana
 
 ---
 
-Screenshots
+## **Screenshots**
 
 
+![Screenshot 2025-04-16 at 10 57 30 AM](https://github.com/user-attachments/assets/a69ed101-43b2-4ce0-8855-a99fe2a85c17)
 
+![Screenshot 2025-04-16 at 10 57 41 AM](https://github.com/user-attachments/assets/efaba2e3-ef82-47f8-9ac3-91ae7ba3d38d)
 
+![Screenshot 2025-04-16 at 10 57 55 AM](https://github.com/user-attachments/assets/9690a43e-ea3d-465d-9894-143c80301a1c)
 
+![Screenshot 2025-04-16 at 10 58 13 AM](https://github.com/user-attachments/assets/454e7d6d-e58b-4edd-aea5-379b4729f652)
+
+![Screenshot 2025-04-16 at 10 58 24 AM](https://github.com/user-attachments/assets/dd9307ab-ad5e-4d91-a5a7-a4ac733898dd)
+
+![Screenshot 2025-04-16 at 10 58 43 AM](https://github.com/user-attachments/assets/183b96c9-142f-4874-a8b7-c514e03e64f3)
+
+![Screenshot 2025-04-16 at 10 56 24 AM](https://github.com/user-attachments/assets/dfa00102-ab20-43a0-87af-dd4a68ad37c6)
+
+![Screenshot 2025-04-16 at 10 58 56 AM](https://github.com/user-attachments/assets/fa00edc3-17cb-43dd-9665-76d602653a21)
 
 
